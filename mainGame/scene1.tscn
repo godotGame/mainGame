@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://textures/scenery/sky/default.png" type="Texture" id=1]
 [ext_resource path="res://textures/scenery/mountains/grey.png" type="Texture" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://textures/scenery/smallStuff/woodPlank.png" type="Texture" id=5]
 [ext_resource path="res://forTheChar.gd" type="Script" id=6]
 [ext_resource path="res://textures/characters/main.png" type="Texture" id=7]
+[ext_resource path="res://textures/characters/walk0.tex" type="Texture" id=8]
+[ext_resource path="res://textures/characters/walk2.tex" type="Texture" id=9]
+[ext_resource path="res://textures/characters/walk1.tex" type="Texture" id=10]
+[ext_resource path="res://.gd" type="Script" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -14,52 +18,16 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="SpriteFrames" id=2]
 
-custom_solver_bias = 0.0
-points = Vector2Array( 1535.93, 482.266, 2025.33, 589.433, 1664.82, 585.638, 1414.95, 572.49, 1287.82, 525.327 )
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 108.964, 562.869, 17.6062, 555.269, 252.291, 474.064, 177.27, 562.869 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 1287.82, 525.327, 1414.95, 572.49, 1300.52, 570.459 )
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 256.961, 562.869, 177.27, 562.869, 252.291, 474.064, 753.021, 551.585 )
-
-[sub_resource type="ConvexPolygonShape2D" id=6]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 435.315, 562.869, 256.961, 562.869, 753.021, 551.585 )
-
-[sub_resource type="ConvexPolygonShape2D" id=7]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 515.005, 562.869, 435.315, 562.869, 753.021, 551.585 )
-
-[sub_resource type="ConvexPolygonShape2D" id=8]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 613.67, 562.869, 515.005, 562.869, 753.021, 551.585 )
-
-[sub_resource type="ConvexPolygonShape2D" id=9]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 856.535, 597.022, 613.67, 562.869, 753.021, 551.585 )
-
-[sub_resource type="ConvexPolygonShape2D" id=10]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 1152.53, 581.843, 856.535, 597.022, 753.021, 551.585, 1027.4, 480.215, 1287.82, 525.327, 1300.52, 570.459 )
-
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -115,6 +83,7 @@ script/script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="char"]
 
+visibility/visible = false
 transform/scale = Vector2( 0.303402, 0.315498 )
 texture = ExtResource( 7 )
 
@@ -126,41 +95,22 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="char"]
+
+transform/pos = Vector2( 5.26172, 5.02243 )
+transform/scale = Vector2( 0.27312, 0.277678 )
+frames = SubResource( 2 )
+animation = "default"
+script/script = ExtResource( 11 )
+
 [node name="Floor" type="StaticBody2D" parent="."]
 
 transform/pos = Vector2( 970.757, 535.18 )
 transform/scale = Vector2( 29.7087, 1 )
 input/pickable = false
-shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 0.0336602, 0, 0, 1, -32.6758, -545.18 )
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 3.25743, 0, 0, 1, -0.408688, -95.8169 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 3 )
-shapes/1/transform = Matrix32( 0.0336602, 0, 0, 1, -32.6758, -545.18 )
-shapes/1/trigger = false
-shapes/2/shape = SubResource( 4 )
-shapes/2/transform = Matrix32( 0.0336602, 0, 0, 1, -32.6758, -545.18 )
-shapes/2/trigger = false
-shapes/3/shape = SubResource( 5 )
-shapes/3/transform = Matrix32( 0.0336602, 0, 0, 1, -32.6758, -545.18 )
-shapes/3/trigger = false
-shapes/4/shape = SubResource( 6 )
-shapes/4/transform = Matrix32( 0.0336602, 0, 0, 1, -32.6758, -545.18 )
-shapes/4/trigger = false
-shapes/5/shape = SubResource( 7 )
-shapes/5/transform = Matrix32( 0.0336602, 0, 0, 1, -32.6758, -545.18 )
-shapes/5/trigger = false
-shapes/6/shape = SubResource( 8 )
-shapes/6/transform = Matrix32( 0.0336602, 0, 0, 1, -32.6758, -545.18 )
-shapes/6/trigger = false
-shapes/7/shape = SubResource( 9 )
-shapes/7/transform = Matrix32( 0.0336602, 0, 0, 1, -32.6758, -545.18 )
-shapes/7/trigger = false
-shapes/8/shape = SubResource( 10 )
-shapes/8/transform = Matrix32( 0.0336602, 0, 0, 1, -32.6758, -545.18 )
-shapes/8/trigger = false
-shapes/9/shape = SubResource( 11 )
-shapes/9/transform = Matrix32( 3.25743, 0, 0, 1, -0.408688, -95.8169 )
-shapes/9/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
@@ -172,8 +122,8 @@ bounce = 0.0
 
 transform/pos = Vector2( -0.408688, -95.8169 )
 transform/scale = Vector2( 3.25743, 1 )
-shape = SubResource( 11 )
+shape = SubResource( 3 )
 trigger = false
-_update_shape_index = 9
+_update_shape_index = 0
 
 

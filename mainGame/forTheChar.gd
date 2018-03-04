@@ -8,7 +8,7 @@ var char_size
 var direction = 0
 var input_direction = 0
 const GRAVITY = 9800
-const jump_strength = 150
+const jump_strength = 100
 var speed_x = 0
 var speed_y = 0
 var collided = false
